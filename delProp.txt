@@ -1,0 +1,25 @@
+ Function delProp(swModel As ModelDoc2, swComp As Component2, strProp As String)
+    Dim swConfig As SldWorks.Configuration
+    Dim swCustProp As SldWorks.CustomPropertyManager
+    
+    Dim vSearch As Variant
+    
+    Set swModel = swComp.GetModelDoc2
+    Set swConfig = swModel.GetActiveConfiguration
+    Set swCustProp = swConfig.CustomPropertyManager
+    
+ vSearch = swCustProp.GetNames
+    
+    For Each v In vSearch
+       If (StrComp(v, strProp, vbTextCompare) = 0) Then
+           swCustProp.Delete2 (v)
+           Exit Function
+                  
+       End If
+       
+    Next v
+    
+    deProp = "sub finalizado"
+ 
+    
+ End Function
